@@ -188,9 +188,15 @@ def get_unique_filename(filepath: str) -> str:
     candidate = filepath
     counter = 1
 
-    while os.path.exists(candidate):
-        candidate = f"{base}_({counter}){ext}"
-        counter += 1
+    if os.path.exists(candidate):
+        option = input("A file already exist, do you want to overwrite it?(y/n): ")
+        while option.lower() not in ["y","n"]:
+            option = input("You have to write either y or n")
+
+        if option =="n":
+            while os.path.exists(candidate):
+                candidate = f"{base}_({counter}){ext}"
+                counter += 1
 
     return candidate
 
@@ -212,3 +218,28 @@ def excel_format(filepath: str):
 
 
     wb.save(f"{filepath}")
+
+def get_classified_participants(file_path: str) -> list[list[str]]:
+    df = pd.read_excel(file_path, sheet_name="Sheet1", header=None, dtype=object)
+    df = df.fillna('')                      # replace NaN with empty string
+    df = df.reindex(columns=[0, 1, 2], fill_value='')  # ensure at least 3 columns
+
+    return df.iloc[:, :3].astype(str).values.tolist()
+
+def get_new_participants(classified_list: list, unclassified_list: list) -> list:
+
+    licensnumbers = {row[0] for row in classified_list}
+    new_list = [row for row in unclassified_list if row[0] not in licensnumbers]
+
+    return new_list
+
+def update_options():
+    print("\nDo you want to add only new participants or update all participants?: ")
+    print("\n1. Add new Participants")
+    print("2. Update existing Participants")
+    option = input("\nEnter your option: ")
+
+    while option not in ["1","2"]:
+        option = input("Enter either 1 or 2")
+
+    return option

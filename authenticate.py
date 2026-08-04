@@ -4,7 +4,7 @@ def main():
     print("---If you have never used this program before you need to register your NBF username and password--- \n" \
     "---Then you can log in and the program will fetch the data for you---")
     print()
-    inp = input("What do you want to do? \n1. log in\n2. register username and password \n3. delete password? \n\nplease enter 1, 2 or 3: ")
+    inp = input("What do you want to do? \n1. log in and run the program\n2. register username and password \n3. delete password? \n\nplease enter 1, 2 or 3: ")
 
     if inp not in ["1", "2", "3"]:
         inp = input("Invalid input. Please enter 1, 2 or 3: ")
