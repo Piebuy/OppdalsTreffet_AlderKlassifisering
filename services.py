@@ -177,7 +177,7 @@ def save_participants_to_excel(participants: list[list[str,str,str]], file_path:
         columns=["Lisens", "Navn", "Klasse"]
     )
 
-    participants_df = participants_df.sort_values(by="Klasse")
+    participants_df = participants_df.sort_values(by=["Klasse","Navn"])
     
     file_path = get_unique_filename(file_path)
     participants_df.to_excel(file_path, index=False)
