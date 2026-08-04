@@ -1,4 +1,4 @@
-# OppdalsTreffet Alder Klassifisering
+# OppdalsTreffet Age classifying
 
 This project processes a list of participants in the bowling tournament OppdalsTreffet.
 
