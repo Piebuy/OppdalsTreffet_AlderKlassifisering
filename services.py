@@ -168,6 +168,9 @@ def get_participant_from_excel(file_path: str) -> list[list[str,str,str]]: # typ
 
 def save_participants_to_excel(participants: list[list[str,str,str]], file_path: str) -> None: # type: ignore
 
+    if participants[0][0] == "Lisens":
+        participants.pop(0)
+
     # Create clean dataframe
     participants_df = pd.DataFrame(
         participants,
