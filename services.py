@@ -192,7 +192,7 @@ def get_unique_filename(filepath: str) -> str:
     counter = 1
 
     if os.path.exists(candidate):
-        option = input("A file already exist, do you want to overwrite it?(y/n): ")
+        option = input("\nA file already exist, do you want to overwrite it?(y/n): ")
         while option.lower() not in ["y","n"]:
             option = input("You have to write either y or n")
 
